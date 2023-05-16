@@ -1,0 +1,5 @@
+ironGeneratorDelay: 2
+goldGeneratorDelay: 5
+respawnDelay: 5
+countdownPreGame: 5
+requiredPlayersToStart: 4

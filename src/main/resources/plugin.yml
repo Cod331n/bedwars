@@ -1,0 +1,6 @@
+name: BedWars
+main: ru.codein.bw.BedWars
+version: 1.0
+commands:
+  force-start:
+    description: "Форсит запуск игры"

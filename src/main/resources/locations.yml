@@ -1,0 +1,19 @@
+lobby: "world,-0.5,91,0.5,0,0"
+redTeam: "world,-0.5,91,-56.5,0,0"
+blueTeam: "world,-0.5,91,57.5,0,0"
+spectators: "world,-0.5,100,0.5,0,0"
+iron:
+  - "world,-4.5,91,-49.5"
+  - "world,3.5,91,50.5"
+gold:
+  - "world,-7.5,91,7.5"
+  - "world,6.5,91,-6.5"
+
+redTeamBedFoot: "world,-1,91,-46"
+redTeamBedHead: "world,-1,91,-47"
+blueTeamBedFoot: "world,-1,91,46"
+blueTeamBedHead: "world,-1,91,47"
+
+nps:
+  - "world,-0.5,91,0.5"
+  - "world,-0.5,91,-56.5"
