@@ -1,7 +1,5 @@
 package ru.codein.bw;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
@@ -12,6 +10,7 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import ru.codein.bw.cache.GeneratorCache;
 import ru.codein.bw.cache.ListenerCache;
 import ru.codein.bw.command.GameForceStart;
+import ru.codein.bw.db.DatabaseConnection;
 import ru.codein.bw.db.PlayerDao;
 import ru.codein.bw.db.PlayerDataMapper;
 import ru.codein.bw.db.UUIDArgumentFactory;
@@ -62,19 +61,8 @@ public class BedWars extends JavaPlugin {
         System.setProperty("console.encoding", "UTF-8");
         instance = this;
 
-        // Настраиваем HikariConfig
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setUsername(System.getenv("DATABASE_USERNAME"));
-        config.setPassword(System.getenv("DATABASE_PASSWORD"));
-        config.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&useSSL=false&serverTimezone=UTC",
-                System.getenv("DATABASE_HOST"),
-                System.getenv("DATABASE_PORT"),
-                System.getenv("DATABASE_NAME")));
-        config.setMaximumPoolSize(MAXIMUM_POOL_SIZE);
-
         // Подключаю JDBI
-        jdbi = Jdbi.create(new HikariDataSource(config));
+        jdbi = Jdbi.create(DatabaseConnection.getConnection());
         jdbi.installPlugin(new SqlObjectPlugin());
         jdbi.registerArgument(new UUIDArgumentFactory(Types.BINARY));
         jdbi.registerColumnMapper(new PlayerDataMapper());
